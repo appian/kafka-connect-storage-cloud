@@ -4,7 +4,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
-import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,13 +11,10 @@ import java.util.Random;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testcontainers.shaded.org.bouncycastle.util.Arrays;
 
 import com.amazonaws.services.s3.AmazonS3;
@@ -27,12 +23,8 @@ import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
 
-import io.confluent.common.utils.SystemTime;
-import io.confluent.common.utils.Time;
 import io.confluent.connect.s3.S3SinkConnectorConfig;
 import io.confluent.connect.s3.S3SinkConnectorTestBase;
-import io.confluent.connect.s3.S3SinkTaskTest;
-import io.confluent.connect.storage.schema.SchemaCompatibility;
 
 public class S3OutputStreamDigestTest extends S3SinkConnectorTestBase {
 

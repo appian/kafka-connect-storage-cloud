@@ -54,6 +54,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import io.confluent.connect.s3.util.EmbeddedConnectUtils;
+import io.confluent.connect.storage.StorageSinkConnectorConfig;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;

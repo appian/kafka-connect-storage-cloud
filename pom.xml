@@ -94,7 +94,7 @@
     <orc-core.override.version>1.4.3</orc-core.override.version>
 
     <kafka.version>3.7.0</kafka.version>
-    <confluent.version.range>[7.8.0-0, 7.8.1-0)</confluent.version.range>
+    <confluent.version.range>7.6.1</confluent.version.range>
     <kafka.connect.storage.common.version>11.2.4</kafka.connect.storage.common.version>
     <jettison.version>1.5.4</jettison.version>
     <json-smart.version>2.5.1</json-smart.version>
@@ -455,32 +455,32 @@
     <dependency>
       <groupId>io.confluent</groupId>
       <artifactId>kafka-connect-avro-converter</artifactId>
-      <version>${confluent.version.range}</version>
+      <version>7.6.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.confluent</groupId>
       <artifactId>kafka-connect-protobuf-converter</artifactId>
-      <version>${confluent.version.range}</version>
+      <version>7.6.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.confluent</groupId>
       <artifactId>kafka-connect-json-schema-converter</artifactId>
-      <version>${confluent.version.range}</version>
+      <version>7.6.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.confluent</groupId>
       <artifactId>kafka-schema-registry</artifactId>
-      <version>${confluent.version.range}</version>
+      <version>7.6.1</version>
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.confluent</groupId>
       <artifactId>kafka-schema-registry</artifactId>
-      <version>${confluent.version.range}</version>
+      <version>7.6.1</version>
       <scope>test</scope>
     </dependency>
     <!-- Temporary addition until powermock updates its mockito version -->

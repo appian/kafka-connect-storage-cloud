@@ -24,6 +24,8 @@
         <version>10.6.0-SNAPSHOT</version>
     </parent>
 
+<!--    <groupId>io.confluent</groupId>-->
+<!--    <version>10.6.0-SNAPSHOT</version>-->
     <artifactId>kafka-connect-s3</artifactId>
     <packaging>jar</packaging>
     <name>kafka-connect-s3</name>
@@ -45,6 +47,66 @@
         <surefire-junit47.version>2.22.1</surefire-junit47.version>
         <guava.version>32.1.2-jre</guava.version>
         <wiremock.version>2.31.0</wiremock.version>
+
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
+
+      <avro.version>1.11.3</avro.version>
+      <commons-io.version>2.8.0</commons-io.version>
+      <commons.beanutils.version>1.9.4</commons.beanutils.version>
+      <commons.codec.version>1.15</commons.codec.version>
+      <commons.compress.version>1.26.1</commons.compress.version>
+      <confluent.maven.repo>https://packages.confluent.io/maven/</confluent.maven.repo>
+      <dependency.check.version>6.1.6</dependency.check.version>
+      <hadoop.version>2.10.2</hadoop.version>
+      <hive.version>2.3.9</hive.version>
+      <httpclient.version>4.5.13</httpclient.version>
+      <httpcore.version>4.4.4</httpcore.version>
+      <jackson.version>2.16.1</jackson.version>
+      <jackson.databind.version>2.16.1</jackson.databind.version>
+      <jackson.mapper.asl.version>1.9.14.jdk17-redhat-00001</jackson.mapper.asl.version>
+      <jetty.version>9.4.53.v20231009</jetty.version>
+      <jline.version>2.12.1</jline.version>
+      <joda.version>2.9.6</joda.version>
+      <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
+      <netty.version>4.1.108.Final</netty.version>
+      <parquet.version>1.11.2</parquet.version>
+      <json.smart.version>2.4.10</json.smart.version>
+      <thrift.version>0.13.0</thrift.version>
+      <tomcat.version>8.5.65</tomcat.version>
+      <slf4j-reload4j.version>1.7.36</slf4j-reload4j.version>
+      <junit.version>4.13.2</junit.version>
+      <junit-jupiter.version>5.10.2</junit-jupiter.version>
+      <easymock.version>5.2.0</easymock.version>
+      <powermock.version>2.0.9</powermock.version>
+      <!--
+      Note: The following three properties are used to change the version of the
+      respective dependencies within hive. They are changed from the ones inherited from
+      hive for fixing CVEs.
+      -->
+      <groovy.override.version>2.4.21</groovy.override.version>
+      <derby.override.version>10.14.2.0</derby.override.version>
+      <orc-core.override.version>1.4.3</orc-core.override.version>
+
+      <kafka.version>3.7.0</kafka.version>
+      <confluent.version.range>7.6.1</confluent.version.range>
+      <kafka.connect.storage.common.version>11.2.16</kafka.connect.storage.common.version>
+      <jettison.version>1.5.4</jettison.version>
+      <json-smart.version>2.5.1</json-smart.version>
+
+      <snappy.java>1.1.10.4</snappy.java>
+      <checkstyle.suppressions.location>checkstyle/suppressions.xml</checkstyle.suppressions.location>
+      <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
+      <!-- temporary fix by pinning the version until we upgrade to a version of common that contains this or newer version.
+          See https://github.com/confluentinc/common/pull/332 for details -->
+      <dependency.check.version>6.1.6</dependency.check.version>
+      <hadoop.version>3.3.6</hadoop.version>
+      <jettison.version>1.5.4</jettison.version>
+      <snakeyaml.version>2.0</snakeyaml.version>
+      <woodstox.version>5.4.0</woodstox.version>
+      <guava.version>32.1.2-jre</guava.version>
+      <avro.version>1.11.3</avro.version>
+      <zookeeper.version>3.8.4</zookeeper.version>
     </properties>
 
     <dependencyManagement>
@@ -70,6 +132,203 @@
     </dependencyManagement>
 
     <dependencies>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-storage-common</artifactId>
+        <version>11.2.4</version>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-storage-core</artifactId>
+        <version>11.2.4</version>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-storage-format</artifactId>
+        <version>11.2.4</version>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-storage-partitioner</artifactId>
+        <version>11.2.4</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka-clients</artifactId>
+        <version>3.7.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>connect-api</artifactId>
+        <version>3.7.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>connect-runtime</artifactId>
+        <version>3.7.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>connect-json</artifactId>
+        <version>3.7.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>3.0.2</version>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-storage-common-hadoop-shaded-guava</artifactId>
+        <version>11.2.4</version>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-avro-converter</artifactId>
+        <version>7.6.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-protobuf-converter</artifactId>
+        <version>7.6.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-json-schema-converter</artifactId>
+        <version>7.6.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-schema-registry</artifactId>
+        <version>7.6.1</version>
+<!--        <type>test-jar</type>-->
+<!--        <scope>test</scope>-->
+      </dependency>
+<!--      <dependency>-->
+<!--        <groupId>io.confluent</groupId>-->
+<!--        <artifactId>kafka-schema-registry</artifactId>-->
+<!--        <version>7.6.1</version>-->
+<!--&lt;!&ndash;        <scope>test</scope>&ndash;&gt;-->
+<!--      </dependency>-->
+      <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-common</artifactId>
+        <version>${hadoop.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.htrace</groupId>
+            <artifactId>htrace-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.htrace</groupId>
+            <artifactId>htrace-core4</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>net.minidev</groupId>
+            <artifactId>json-smart</artifactId>
+
+          </exclusion>
+          <exclusion>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-codec</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.hadoop.thirdparty </groupId>
+            <artifactId>hadoop-shaded-protobuf_3_7</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.hadoop.thirdparty </groupId>
+            <artifactId>hadoop-shaded-guava</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-mapreduce-client-core</artifactId>
+        <version>${hadoop.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+          </exclusion>
+        </exclusions>
+        <scope>test</scope>
+      </dependency>
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-s3</artifactId>
@@ -179,9 +438,145 @@
             <version>3.20.2</version>
             <scope>test</scope>
         </dependency>
+
+
+
+
+
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
+        <version>${junit-jupiter.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit-jupiter.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.easymock</groupId>
+        <artifactId>easymock</artifactId>
+        <version>${easymock.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-module-junit4</artifactId>
+        <version>${powermock.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-api-easymock</artifactId>
+        <version>${powermock.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-api-mockito2</artifactId>
+        <version>${powermock.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-avro-converter</artifactId>
+        <version>7.6.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-protobuf-converter</artifactId>
+        <version>7.6.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-connect-json-schema-converter</artifactId>
+        <version>7.6.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-schema-registry</artifactId>
+        <version>7.6.1</version>
+        <type>test-jar</type>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.confluent</groupId>
+        <artifactId>kafka-schema-registry</artifactId>
+        <version>7.6.1</version>
+        <scope>test</scope>
+      </dependency>
+      <!-- Temporary addition until powermock updates its mockito version -->
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>2.19.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guava.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.avro</groupId>
+        <artifactId>avro</artifactId>
+        <version>${avro.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>2.6</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.woodstox</groupId>
+        <artifactId>woodstox-core</artifactId>
+        <version>${woodstox.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.zookeeper</groupId>
+        <artifactId>zookeeper</artifactId>
+        <version>${zookeeper.version}</version>
+      </dependency>
+
     </dependencies>
 
     <build>
+      <pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <argLine>@{argLine} -Djava.awt.headless=true</argLine>
+              <reuseForks>false</reuseForks>
+              <forkCount>1</forkCount>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -442,35 +837,35 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>1.2.1</version>
                         <executions>
-                            <execution>
-                                <id>create-licenses</id>
-                                <configuration>
-                                    <mainClass>io.confluent.licenses.LicenseFinder</mainClass>
-                                    <arguments>
-                                        <!-- Note use of development instead of package so we pick up all dependencies. -->
-                                        <argument>-i
-                                            ${project.build.directory}/${project.build.finalName}-package/share/java/${project.name}
-                                        </argument>
-                                        <argument>-o ${project.basedir}/licenses</argument>
-                                        <argument>-f</argument>
-                                        <argument>-h
-                                            ${project.build.directory}/${project.build.finalName}-package/share/doc/${project.name}/licenses.html
-                                        </argument>
-                                        <argument>-l
-                                            ${project.build.directory}/${project.build.finalName}-package/share/doc/${project.name}/licenses
-                                        </argument>
-                                        <argument>-n
-                                            ${project.build.directory}/${project.build.finalName}-package/share/doc/${project.name}/notices
-                                        </argument>
-                                        <argument>-t ${project.name}</argument>
-                                        <argument>-x licenses-${licenses.version}.jar</argument>
-                                    </arguments>
-                                </configuration>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>java</goal>
-                                </goals>
-                            </execution>
+<!--                            <execution>-->
+<!--                                <id>create-licenses</id>-->
+<!--                                <configuration>-->
+<!--                                    <mainClass>io.confluent.licenses.LicenseFinder</mainClass>-->
+<!--                                    <arguments>-->
+<!--                                        &lt;!&ndash; Note use of development instead of package so we pick up all dependencies. &ndash;&gt;-->
+<!--                                        <argument>-i-->
+<!--                                            ${project.build.directory}/${project.build.finalName}-package/share/java/${project.name}-->
+<!--                                        </argument>-->
+<!--                                        <argument>-o ${project.basedir}/licenses</argument>-->
+<!--                                        <argument>-f</argument>-->
+<!--                                        <argument>-h-->
+<!--                                            ${project.build.directory}/${project.build.finalName}-package/share/doc/${project.name}/licenses.html-->
+<!--                                        </argument>-->
+<!--                                        <argument>-l-->
+<!--                                            ${project.build.directory}/${project.build.finalName}-package/share/doc/${project.name}/licenses-->
+<!--                                        </argument>-->
+<!--                                        <argument>-n-->
+<!--                                            ${project.build.directory}/${project.build.finalName}-package/share/doc/${project.name}/notices-->
+<!--                                        </argument>-->
+<!--                                        <argument>-t ${project.name}</argument>-->
+<!--                                        <argument>-x licenses-${licenses.version}.jar</argument>-->
+<!--                                    </arguments>-->
+<!--                                </configuration>-->
+<!--                                <phase>package</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>java</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
                         </executions>
                         <configuration>
                             <includeProjectDependencies>true</includeProjectDependencies>
@@ -480,13 +875,13 @@
                                 <artifactId>licenses</artifactId>
                             </executableDependency>
                         </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>io.confluent</groupId>
-                                <artifactId>licenses</artifactId>
-                                <version>${licenses.version}</version>
-                            </dependency>
-                        </dependencies>
+<!--                        <dependencies>-->
+<!--                            <dependency>-->
+<!--                                <groupId>io.confluent</groupId>-->
+<!--                                <artifactId>licenses</artifactId>-->
+<!--                                <version>${licenses.version}</version>-->
+<!--                            </dependency>-->
+<!--                        </dependencies>-->
                     </plugin>
                 </plugins>
             </build>
@@ -502,31 +897,31 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>1.2.1</version>
-                        <executions>
-                            <execution>
-                                <id>create-licenses</id>
-                                <configuration>
-                                    <mainClass>io.confluent.licenses.LicenseFinder</mainClass>
-                                    <arguments>
-                                        <!-- Note use of development instead of package so we pick up all dependencies. -->
-                                        <argument>-i
-                                            ${project.build.directory}/${project.build.finalName}-development/share/java/${project.name}
-                                        </argument>
-                                        <argument>-o ${project.basedir}/licenses</argument>
-                                        <argument>-f</argument>
-                                        <argument>-h ${project.basedir}/licenses.html</argument>
-                                        <argument>-l ${project.basedir}/licenses</argument>
-                                        <argument>-n ${project.basedir}/notices</argument>
-                                        <argument>-t ${project.name}</argument>
-                                        <argument>-x licenses-${licenses.version}.jar</argument>
-                                    </arguments>
-                                </configuration>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>java</goal>
-                                </goals>
-                            </execution>
-                        </executions>
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>create-licenses</id>-->
+<!--                                <configuration>-->
+<!--                                    <mainClass>io.confluent.licenses.LicenseFinder</mainClass>-->
+<!--                                    <arguments>-->
+<!--                                        &lt;!&ndash; Note use of development instead of package so we pick up all dependencies. &ndash;&gt;-->
+<!--                                        <argument>-i-->
+<!--                                            ${project.build.directory}/${project.build.finalName}-development/share/java/${project.name}-->
+<!--                                        </argument>-->
+<!--                                        <argument>-o ${project.basedir}/licenses</argument>-->
+<!--                                        <argument>-f</argument>-->
+<!--                                        <argument>-h ${project.basedir}/licenses.html</argument>-->
+<!--                                        <argument>-l ${project.basedir}/licenses</argument>-->
+<!--                                        <argument>-n ${project.basedir}/notices</argument>-->
+<!--                                        <argument>-t ${project.name}</argument>-->
+<!--                                        <argument>-x licenses-${licenses.version}.jar</argument>-->
+<!--                                    </arguments>-->
+<!--                                </configuration>-->
+<!--                                <phase>package</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>java</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
                         <configuration>
                             <includeProjectDependencies>true</includeProjectDependencies>
                             <includePluginDependencies>true</includePluginDependencies>
@@ -535,13 +930,13 @@
                                 <artifactId>licenses</artifactId>
                             </executableDependency>
                         </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>io.confluent</groupId>
-                                <artifactId>licenses</artifactId>
-                                <version>${licenses.version}</version>
-                            </dependency>
-                        </dependencies>
+<!--                        <dependencies>-->
+<!--                            <dependency>-->
+<!--                                <groupId>io.confluent</groupId>-->
+<!--                                <artifactId>licenses</artifactId>-->
+<!--                                <version>${licenses.version}</version>-->
+<!--                            </dependency>-->
+<!--                        </dependencies>-->
                     </plugin>
                     <plugin>
                         <artifactId>maven-clean-plugin</artifactId>
@@ -569,4 +964,17 @@
             </properties>
         </profile>
     </profiles>
+
+  <repositories>
+    <repository>
+      <id>maven-central</id>
+      <name>maven central</name>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+    <repository>
+      <id>confluent</id>
+      <name>confluent</name>
+      <url>https://packages.confluent.io/maven/</url>
+    </repository>
+  </repositories>
 </project>

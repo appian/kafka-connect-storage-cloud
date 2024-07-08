@@ -53,8 +53,6 @@ import io.confluent.connect.storage.partitioner.TimeBasedPartitioner;
 import io.confluent.connect.avro.AvroDataConfig;
 
 import static io.confluent.connect.s3.S3SinkConnectorConfig.AffixType;
-import static io.confluent.connect.s3.S3SinkConnectorConfig.DECIMAL_FORMAT_CONFIG;
-import static io.confluent.connect.s3.S3SinkConnectorConfig.DECIMAL_FORMAT_DEFAULT;
 import static io.confluent.connect.s3.S3SinkConnectorConfig.HEADERS_FORMAT_CLASS_CONFIG;
 import static io.confluent.connect.s3.S3SinkConnectorConfig.KEYS_FORMAT_CLASS_CONFIG;
 import static io.confluent.connect.s3.S3SinkConnectorConfig.SCHEMA_PARTITION_AFFIX_TYPE_CONFIG;
