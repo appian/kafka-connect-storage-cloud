@@ -73,11 +73,11 @@ public class S3OutputStreamDigestTest extends S3SinkConnectorTestBase {
     localProps.put(S3SinkConnectorConfig.PART_SIZE_CONFIG, String.valueOf(size));
     setUp();
 
-    byte myBytes[] = new byte[size - 1];
+    byte[] payload = new byte[size - 1];
     Random r = new Random(1);
-    r.nextBytes(myBytes);
+    r.nextBytes(payload);
 
-    stream.write(myBytes);
+    stream.write(payload);
     stream.commit();
 
     ArgumentCaptor<UploadPartRequest> uploadPartRequestArgumentCaptor = ArgumentCaptor.forClass(
@@ -86,7 +86,7 @@ public class S3OutputStreamDigestTest extends S3SinkConnectorTestBase {
 
     UploadPartRequest request = uploadPartRequestArgumentCaptor.getValue();
     Assert.assertNotNull(request);
-    Assert.assertEquals(request.getMd5Digest(), Base64.getEncoder().encodeToString(DigestUtils.md5(myBytes)));
+    Assert.assertEquals(request.getMd5Digest(), Base64.getEncoder().encodeToString(DigestUtils.md5(payload)));
   }
 
   @Test
@@ -95,11 +95,11 @@ public class S3OutputStreamDigestTest extends S3SinkConnectorTestBase {
     localProps.put(S3SinkConnectorConfig.PART_SIZE_CONFIG, String.valueOf(size));
     setUp();
 
-    byte[] myBytes = new byte[size + 1];
+    byte[] payload = new byte[size + 1];
     Random r = new Random(1);
-    r.nextBytes(myBytes);
+    r.nextBytes(payload);
 
-    stream.write(myBytes);
+    stream.write(payload);
     stream.commit();
 
     ArgumentCaptor<UploadPartRequest> uploadPartRequestArgumentCaptor = ArgumentCaptor.forClass(
@@ -111,14 +111,14 @@ public class S3OutputStreamDigestTest extends S3SinkConnectorTestBase {
     UploadPartRequest request1 = uploadPartRequestArgumentCaptor.getAllValues().get(0);
     Assert.assertNotNull(request1);
     Assert.assertEquals(request1.getMd5Digest(),
-        Base64.getEncoder().encodeToString(DigestUtils.md5(Arrays.copyOf(myBytes, size))));
+        Base64.getEncoder().encodeToString(DigestUtils.md5(Arrays.copyOf(payload, size))));
 
     UploadPartRequest request2 = uploadPartRequestArgumentCaptor.getAllValues().get(1);
     Assert.assertNotNull(request2);
 
-    byte[] myBytesEnd = new byte[1];
-    myBytesEnd[0] = myBytes[size];
+    byte[] payloadEnd = new byte[1];
+    payloadEnd[0] = payload[size];
     Assert.assertEquals(request2.getMd5Digest(),
-        Base64.getEncoder().encodeToString(DigestUtils.md5(myBytesEnd)));
+        Base64.getEncoder().encodeToString(DigestUtils.md5(payloadEnd)));
   }
 }

@@ -271,15 +271,29 @@ public class S3OutputStream extends PositionOutputStream {
                                             .withGeneralProgressListener(progressListener);
 
       if (enableDigest) {
-        byte[] streamBytes = new byte[partSize];
-        inputStream.read(streamBytes, 0, partSize);
-        String digest = Base64.getEncoder().encodeToString(DigestUtils.md5(streamBytes));
-        inputStream.reset();
-        request = request.withMD5Digest(digest);
+        request = request.withMD5Digest(computeDigest(inputStream, partSize));
       }
 
       log.debug("Uploading part {} for id '{}'", currentPartNumber, uploadId);
       partETags.add(s3.uploadPart(request).getPartETag());
+    }
+
+    /**
+     * Consumes {@code partSize} bytes from the provided {@code inputStream} and computes the MD5 digest
+     *
+     * Resets the {@code inputStream} before returning digest.
+     *
+     * @param inputStream {@link ByteArrayInputStream} for upload part request payload
+     * @param partSize upload part size byte count
+     * @return MD5 digest of the provided input stream
+     */
+    private String computeDigest(ByteArrayInputStream inputStream, int partSize) {
+      byte[] streamBytes = new byte[partSize];
+      inputStream.read(streamBytes, 0, partSize);
+      String digest = Base64.getEncoder().encodeToString(DigestUtils.md5(streamBytes));
+      inputStream.reset();
+      log.debug("Computed digest {} for id '{}'", digest, uploadId);
+      return digest;
     }
 
     public void complete() throws IOException {

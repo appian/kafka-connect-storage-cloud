@@ -645,18 +645,18 @@ public class S3SinkConnectorConfigTest extends S3SinkConnectorTestBase {
   public void testSendDigestConfigDefault() {
     properties.remove(SEND_DIGEST_CONFIG);
     connectorConfig = new S3SinkConnectorConfig(properties);
-    assertEquals(false, connectorConfig.isSendDigestEnabled());
+    assertFalse(connectorConfig.isSendDigestEnabled());
   }
 
   @Test
   public void testSendDigestConfig() {
     properties.put(SEND_DIGEST_CONFIG, "true");
     connectorConfig = new S3SinkConnectorConfig(properties);
-    assertEquals(true, connectorConfig.isSendDigestEnabled());
+    assertTrue(connectorConfig.isSendDigestEnabled());
 
     properties.put(SEND_DIGEST_CONFIG, "false");
     connectorConfig = new S3SinkConnectorConfig(properties);
-    assertEquals(false, connectorConfig.isSendDigestEnabled());
+    assertFalse(connectorConfig.isSendDigestEnabled());
   }
 
   @Test(expected = ConfigException.class)
